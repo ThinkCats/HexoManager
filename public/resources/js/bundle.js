@@ -222,9 +222,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _SideBar = require('./common/SideBar');
-
-var _SideBar2 = _interopRequireDefault(_SideBar);
+var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -270,8 +268,8 @@ var App = function (_Component) {
                     'div',
                     { className: 'ui sidebar icon inverted vertical menu' },
                     _react2.default.createElement(
-                        'a',
-                        { className: 'item' },
+                        _reactRouter.Link,
+                        { className: 'item', to: '/', onClick: this.handleShowSideBar },
                         _react2.default.createElement('i', { className: 'home icon' }),
                         'Home'
                     ),
@@ -292,12 +290,16 @@ var App = function (_Component) {
                     'div',
                     { className: 'pusher' },
                     _react2.default.createElement(
-                        'span',
-                        { onClick: this.handleShowSideBar },
-                        'show sidebar'
+                        'button',
+                        { onClick: this.handleShowSideBar, className: 'right attached ui black button custom-menu' },
+                        'Menu'
                     ),
                     _react2.default.createElement('br', null),
-                    this.props.children
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'ui container' },
+                        this.props.children
+                    )
                 )
             );
         }
@@ -308,7 +310,7 @@ var App = function (_Component) {
 
 exports.default = App;
 
-},{"./common/SideBar":8,"react":"react"}],6:[function(require,module,exports){
+},{"react":"react","react-router":"react-router"}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -321,15 +323,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _connectToStores = require('alt-utils/lib/connectToStores');
+var _connectToStores = require('../../../../node_modules/alt-utils/lib/connectToStores');
 
 var _connectToStores2 = _interopRequireDefault(_connectToStores);
 
-var _ContentAction = require('../action/ContentAction');
+var _ContentAction = require('../../action/ContentAction');
 
 var _ContentAction2 = _interopRequireDefault(_ContentAction);
 
-var _ContentStore = require('../store/ContentStore');
+var _ContentStore = require('../../store/ContentStore');
 
 var _ContentStore2 = _interopRequireDefault(_ContentStore);
 
@@ -407,7 +409,7 @@ var Content = function (_Component) {
 
 exports.default = (0, _connectToStores2.default)(Content);
 
-},{"../action/ContentAction":3,"../store/ContentStore":11,"alt-utils/lib/connectToStores":1,"react":"react"}],7:[function(require,module,exports){
+},{"../../../../node_modules/alt-utils/lib/connectToStores":1,"../../action/ContentAction":3,"../../store/ContentStore":10,"react":"react"}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -445,7 +447,7 @@ var Home = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                'Hello Content Home! ... ',
+                'Hello Home! ... ',
                 _react2.default.createElement(
                     _reactRouter.Link,
                     { to: '/content' },
@@ -461,48 +463,6 @@ var Home = function (_Component) {
 exports.default = Home;
 
 },{"react":"react","react-router":"react-router"}],8:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SideBar = function (_Component) {
-    _inherits(SideBar, _Component);
-
-    function SideBar() {
-        _classCallCheck(this, SideBar);
-
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(SideBar).apply(this, arguments));
-    }
-
-    _createClass(SideBar, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement('div', null);
-        }
-    }]);
-
-    return SideBar;
-}(_react.Component);
-
-exports.default = SideBar;
-
-},{"react":"react"}],9:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -527,7 +487,7 @@ _reactDom2.default.render(_react2.default.createElement(
     _route2.default
 ), document.getElementById('app'));
 
-},{"./route":10,"react":"react","react-dom":"react-dom","react-router":"react-router"}],10:[function(require,module,exports){
+},{"./route":9,"react":"react","react-dom":"react-dom","react-router":"react-router"}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -540,15 +500,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _App = require('./component/App');
+var _App = require('./component/manager/App');
 
 var _App2 = _interopRequireDefault(_App);
 
-var _Home = require('./component/Home');
+var _Home = require('./component/manager/Home');
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Content = require('./component/Content');
+var _Content = require('./component/manager/Content');
 
 var _Content2 = _interopRequireDefault(_Content);
 
@@ -561,7 +521,7 @@ exports.default = _react2.default.createElement(
     _react2.default.createElement(_reactRouter.Route, { path: '/content', component: _Content2.default })
 );
 
-},{"./component/App":5,"./component/Content":6,"./component/Home":7,"react":"react","react-router":"react-router"}],11:[function(require,module,exports){
+},{"./component/manager/App":5,"./component/manager/Content":6,"./component/manager/Home":7,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -609,4 +569,4 @@ var ContentStore = function ContentStore() {
 
 exports.default = _alt2.default.createStore(ContentStore, 'ContentStore');
 
-},{"../action/ContentAction":3,"../alt":4}]},{},[9]);
+},{"../action/ContentAction":3,"../alt":4}]},{},[8]);

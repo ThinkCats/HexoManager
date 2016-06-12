@@ -30,7 +30,8 @@ var dependencies = [
  */
 gulp.task('vendor', function() {
     return gulp.src([
-        'bower_components/jquery/dist/jquery.js'
+        'bower_components/jquery/dist/jquery.min.js',
+        'bower_components/Semantic-UI/dist/semantic.min.js'
     ]).pipe(concat('vendor.js'))
         .pipe(gulpif(production, uglify({ mangle: false })))
         .pipe(gulp.dest('public/resources/js'));

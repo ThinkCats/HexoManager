@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SideBar from './common/SideBar';
+import {Link} from 'react-router';
 
 class App extends Component {
 
@@ -17,10 +17,10 @@ class App extends Component {
         return (
             <div className="custom-sidebar ui bottom attached segment">
                 <div className="ui sidebar icon inverted vertical menu">
-                    <a className="item">
+                    <Link className="item" to="/" onClick={this.handleShowSideBar}>
                         <i className="home icon"></i>
                         Home
-                    </a>
+                    </Link>
                     <a className="item">
                         <i className="block layout icon"></i>
                         Topics
@@ -32,8 +32,10 @@ class App extends Component {
                 </div>
 
                 <div className="pusher">
-                    <span onClick={this.handleShowSideBar}>show sidebar</span><br/>
-                    {this.props.children}
+                    <button onClick={this.handleShowSideBar} className="right attached ui black button custom-menu">Menu</button><br/>
+                    <div className="ui container">
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
 

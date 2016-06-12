@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import connectToStores from 'alt-utils/lib/connectToStores';
-import ContentAction from '../action/ContentAction';
-import ContentStore from '../store/ContentStore';
+import connectToStores from '../../../../node_modules/alt-utils/lib/connectToStores';
+import ContentAction from '../../action/ContentAction';
+import ContentStore from '../../store/ContentStore';
 
 class Content extends Component {
     static getStores() {

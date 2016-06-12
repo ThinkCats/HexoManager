@@ -2,6 +2,12 @@
     font-size: 16pt;
 }
 
+/*main content height*/
 .custom-content{
     height: 100%;
+}
+
+/* show sidebar menu*/
+.custom-menu{
+    margin-left: -5px;!important;
 }

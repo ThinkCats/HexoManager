@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route} from 'react-router';
-import App from './component/App';
-import Home from './component/Home';
-import Content from './component/Content';
+import App from './component/manager/App';
+import Home from './component/manager/Home';
+import Content from './component/manager/Content';
 
 export default (
     <Route component={App}>
