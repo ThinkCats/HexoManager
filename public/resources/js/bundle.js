@@ -210,7 +210,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = new _alt2.default();
 
 },{"alt":"alt"}],5:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -218,11 +218,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = require('react-router');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -236,71 +234,18 @@ var App = function (_Component) {
     _inherits(App, _Component);
 
     function App() {
-        var _Object$getPrototypeO;
-
-        var _temp, _this, _ret;
-
         _classCallCheck(this, App);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(App)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.handleShowSideBar = function () {
-            $('.custom-sidebar .ui.sidebar').sidebar('toggle');
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
     }
 
     _createClass(App, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            $('.custom-sidebar .ui.sidebar').sidebar({
-                context: $('.custom-sidebar')
-            });
-        }
-    }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return _react2.default.createElement(
-                'div',
-                { className: 'custom-sidebar ui bottom attached segment' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'ui sidebar icon inverted vertical menu' },
-                    _react2.default.createElement(
-                        _reactRouter.Link,
-                        { className: 'item', to: '/', onClick: this.handleShowSideBar },
-                        _react2.default.createElement('i', { className: 'home icon' }),
-                        'Home'
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { className: 'item' },
-                        _react2.default.createElement('i', { className: 'block layout icon' }),
-                        'Topics'
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { className: 'item' },
-                        _react2.default.createElement('i', { className: 'smile icon' }),
-                        'Friends'
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'pusher' },
-                    _react2.default.createElement(
-                        'button',
-                        { onClick: this.handleShowSideBar, className: 'right attached ui black button custom-menu' },
-                        'Menu'
-                    ),
-                    _react2.default.createElement('br', null),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'ui container' },
-                        this.props.children
-                    )
-                )
+                "div",
+                { className: "custom-content" },
+                this.props.children
             );
         }
     }]);
@@ -310,7 +255,101 @@ var App = function (_Component) {
 
 exports.default = App;
 
-},{"react":"react","react-router":"react-router"}],6:[function(require,module,exports){
+},{"react":"react"}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Guide = function (_Component) {
+    _inherits(Guide, _Component);
+
+    function Guide() {
+        _classCallCheck(this, Guide);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(Guide).apply(this, arguments));
+    }
+
+    _createClass(Guide, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                'This is Guide Page',
+                _react2.default.createElement('br', null),
+                this.props.children
+            );
+        }
+    }]);
+
+    return Guide;
+}(_react.Component);
+
+exports.default = Guide;
+
+},{"react":"react"}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var StepOne = function (_Component) {
+    _inherits(StepOne, _Component);
+
+    function StepOne() {
+        _classCallCheck(this, StepOne);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(StepOne).apply(this, arguments));
+    }
+
+    _createClass(StepOne, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                'Step one'
+            );
+        }
+    }]);
+
+    return StepOne;
+}(_react.Component);
+
+exports.default = StepOne;
+
+},{"react":"react"}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -409,7 +448,7 @@ var Content = function (_Component) {
 
 exports.default = (0, _connectToStores2.default)(Content);
 
-},{"../../../../node_modules/alt-utils/lib/connectToStores":1,"../../action/ContentAction":3,"../../store/ContentStore":10,"react":"react"}],7:[function(require,module,exports){
+},{"../../../../node_modules/alt-utils/lib/connectToStores":1,"../../action/ContentAction":3,"../../store/ContentStore":13,"react":"react"}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -450,7 +489,7 @@ var Home = function (_Component) {
                 'Hello Home! ... ',
                 _react2.default.createElement(
                     _reactRouter.Link,
-                    { to: '/content' },
+                    { to: './content' },
                     'content'
                 )
             );
@@ -462,7 +501,108 @@ var Home = function (_Component) {
 
 exports.default = Home;
 
-},{"react":"react","react-router":"react-router"}],8:[function(require,module,exports){
+},{"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Manager = function (_Component) {
+    _inherits(Manager, _Component);
+
+    function Manager() {
+        var _Object$getPrototypeO;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Manager);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Manager)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.handleShowSideBar = function () {
+            $('.custom-sidebar .ui.sidebar').sidebar('toggle');
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Manager, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            $('.custom-sidebar .ui.sidebar').sidebar({
+                context: $('.custom-sidebar')
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'custom-sidebar ui bottom attached segment' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'ui sidebar icon inverted vertical menu' },
+                    _react2.default.createElement(
+                        _reactRouter.Link,
+                        { className: 'item', to: '/', onClick: this.handleShowSideBar },
+                        _react2.default.createElement('i', { className: 'home icon' }),
+                        'Home'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { className: 'item' },
+                        _react2.default.createElement('i', { className: 'block layout icon' }),
+                        'Topics'
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { className: 'item' },
+                        _react2.default.createElement('i', { className: 'smile icon' }),
+                        'Friends'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'pusher' },
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.handleShowSideBar, className: 'right attached ui black button custom-menu' },
+                        'Menu'
+                    ),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'ui container' },
+                        this.props.children
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Manager;
+}(_react.Component);
+
+exports.default = Manager;
+
+},{"react":"react","react-router":"react-router"}],11:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -487,7 +627,7 @@ _reactDom2.default.render(_react2.default.createElement(
     _route2.default
 ), document.getElementById('app'));
 
-},{"./route":9,"react":"react","react-dom":"react-dom","react-router":"react-router"}],9:[function(require,module,exports){
+},{"./route":12,"react":"react","react-dom":"react-dom","react-router":"react-router"}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -500,9 +640,13 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = require('react-router');
 
-var _App = require('./component/manager/App');
+var _App = require('./component/App');
 
 var _App2 = _interopRequireDefault(_App);
+
+var _Manager = require('./component/manager/Manager');
+
+var _Manager2 = _interopRequireDefault(_Manager);
 
 var _Home = require('./component/manager/Home');
 
@@ -512,16 +656,36 @@ var _Content = require('./component/manager/Content');
 
 var _Content2 = _interopRequireDefault(_Content);
 
+var _Guide = require('./component/guide/Guide');
+
+var _Guide2 = _interopRequireDefault(_Guide);
+
+var _StepOne = require('./component/guide/StepOne');
+
+var _StepOne2 = _interopRequireDefault(_StepOne);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = _react2.default.createElement(
     _reactRouter.Route,
     { component: _App2.default },
-    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Home2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/content', component: _Content2.default })
+    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Guide2.default }),
+    _react2.default.createElement(
+        _reactRouter.Route,
+        { path: '/manager', component: _Manager2.default },
+        _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'home', component: _Home2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'content', component: _Content2.default })
+    ),
+    _react2.default.createElement(
+        _reactRouter.Route,
+        { path: '/guide', component: _Guide2.default },
+        _react2.default.createElement(_reactRouter.IndexRoute, { component: _StepOne2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: 'stepOne', component: _StepOne2.default })
+    )
 );
 
-},{"./component/manager/App":5,"./component/manager/Content":6,"./component/manager/Home":7,"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
+},{"./component/App":5,"./component/guide/Guide":6,"./component/guide/StepOne":7,"./component/manager/Content":8,"./component/manager/Home":9,"./component/manager/Manager":10,"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -569,4 +733,4 @@ var ContentStore = function ContentStore() {
 
 exports.default = _alt2.default.createStore(ContentStore, 'ContentStore');
 
-},{"../action/ContentAction":3,"../alt":4}]},{},[8]);
+},{"../action/ContentAction":3,"../alt":4}]},{},[11]);
