@@ -1,5 +1,7 @@
-# ReactRouterServerRender
-这是一个开发脚手架.
+# Hexo Manager
+反正是不想用hexo的命令来写东西了,有时候觉得不方便.再加上练手,之前说的做这个工具,终于开始做了.万一好使呢
+
+
 使用ES6语法来写的Node应用,前端使用React + React Router,使用服务端渲染.
 
 ### run
