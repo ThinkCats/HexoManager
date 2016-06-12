@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, IndexRoute} from 'react-router';
+import {Route, IndexRoute } from 'react-router';
 import App from './component/App';
 import Manager from './component/manager/Manager';
 import Home from './component/manager/Home';
@@ -9,7 +9,9 @@ import StepOne from './component/guide/StepOne';
 
 export default (
     <Route component={App}>
-        <Route path="/" component={Guide}/>
+        <Route path="/" component={Manager}>
+            <IndexRoute component={Home}/>
+        </Route>
         <Route path="/manager" component={Manager}>
             <IndexRoute component={Home}/>
             <Route path="home" component={Home}/>

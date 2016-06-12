@@ -256,7 +256,7 @@ var App = function (_Component) {
 exports.default = App;
 
 },{"react":"react"}],6:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -264,7 +264,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -286,14 +286,88 @@ var Guide = function (_Component) {
     }
 
     _createClass(Guide, [{
-        key: 'render',
+        key: "render",
         value: function render() {
             return _react2.default.createElement(
-                'div',
-                null,
-                'This is Guide Page',
-                _react2.default.createElement('br', null),
-                this.props.children
+                "div",
+                { className: "ui text container" },
+                _react2.default.createElement("br", null),
+                _react2.default.createElement(
+                    "h2",
+                    { className: "ui header" },
+                    _react2.default.createElement("i", { className: "settings icon" }),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "content" },
+                        "Setting Your Hexo "
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "ui steps" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: " step" },
+                        _react2.default.createElement("i", { className: "info icon" }),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "content" },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "title" },
+                                "Step 1: System Env"
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "description" },
+                                "You may need git & hexo"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "completed step" },
+                        _react2.default.createElement("i", { className: "info icon" }),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "content" },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "title" },
+                                "Step 2: Hexo Setup"
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "description" },
+                                "Set up your git and hexo "
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "disabled step" },
+                        _react2.default.createElement("i", { className: "info icon" }),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "content" },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "title" },
+                                "Step 3: Complete"
+                            ),
+                            _react2.default.createElement(
+                                "div",
+                                { className: "description" },
+                                "Enjoy writing your blog"
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "ui attached segment" },
+                    this.props.children
+                )
             );
         }
     }]);
@@ -304,7 +378,7 @@ var Guide = function (_Component) {
 exports.default = Guide;
 
 },{"react":"react"}],7:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -312,7 +386,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -334,12 +408,28 @@ var StepOne = function (_Component) {
     }
 
     _createClass(StepOne, [{
-        key: 'render',
+        key: "render",
         value: function render() {
             return _react2.default.createElement(
-                'div',
-                null,
-                'Step one'
+                "div",
+                { className: "ui segment" },
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement(
+                    "div",
+                    { className: "ui active inverted dimmer" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "ui medium text loader" },
+                        "Checking System ...."
+                    )
+                )
             );
         }
     }]);
@@ -669,7 +759,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _react2.default.createElement(
     _reactRouter.Route,
     { component: _App2.default },
-    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Guide2.default }),
+    _react2.default.createElement(
+        _reactRouter.Route,
+        { path: '/', component: _Manager2.default },
+        _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default })
+    ),
     _react2.default.createElement(
         _reactRouter.Route,
         { path: '/manager', component: _Manager2.default },
