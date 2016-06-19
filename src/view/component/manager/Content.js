@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import connectToStores from '../../../../node_modules/alt-utils/lib/connectToStores';
+import connectToStores from 'alt-utils/lib/connectToStores';
 import ContentAction from '../../action/ContentAction';
 import ContentStore from '../../store/ContentStore';
 

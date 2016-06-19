@@ -194,7 +194,41 @@ var ContentAction = function () {
 
 exports.default = _alt2.default.createActions(ContentAction);
 
-},{"../alt":4}],4:[function(require,module,exports){
+},{"../alt":5}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _alt = require('../alt');
+
+var _alt2 = _interopRequireDefault(_alt);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var GuideAction = function () {
+    function GuideAction() {
+        _classCallCheck(this, GuideAction);
+    }
+
+    _createClass(GuideAction, [{
+        key: 'handleInit',
+        value: function handleInit() {
+            return null;
+        }
+    }]);
+
+    return GuideAction;
+}();
+
+exports.default = _alt2.default.createActions(GuideAction);
+
+},{"../alt":5}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -209,7 +243,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = new _alt2.default();
 
-},{"alt":"alt"}],5:[function(require,module,exports){
+},{"alt":"alt"}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -255,8 +289,25 @@ var App = function (_Component) {
 
 exports.default = App;
 
-},{"react":"react"}],6:[function(require,module,exports){
-"use strict";
+},{"react":"react"}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.json = json;
+function json(url, option) {
+    return fetch(url, option).then(function (res) {
+        if (res.ok) {
+            return res.json();
+        } else {
+            throw new Error('fetch data error');
+        }
+    });
+}
+
+},{}],8:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -264,9 +315,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _connectToStores = require('alt-utils/lib/connectToStores');
+
+var _connectToStores2 = _interopRequireDefault(_connectToStores);
+
+var _GuideAction = require('../../action/GuideAction');
+
+var _GuideAction2 = _interopRequireDefault(_GuideAction);
+
+var _GuideStore = require('../../store/GuideStore');
+
+var _GuideStore2 = _interopRequireDefault(_GuideStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -276,108 +339,144 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Guide = function (_Component) {
-    _inherits(Guide, _Component);
+var PureGuide = function (_Component) {
+    _inherits(PureGuide, _Component);
 
-    function Guide() {
-        _classCallCheck(this, Guide);
+    function PureGuide() {
+        _classCallCheck(this, PureGuide);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(Guide).apply(this, arguments));
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(PureGuide).apply(this, arguments));
     }
 
-    _createClass(Guide, [{
-        key: "render",
+    _createClass(PureGuide, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            console.log('guide init');
+            _GuideAction2.default.handleInit();
+        }
+    }, {
+        key: 'render',
         value: function render() {
+            var stepOne = '';
+            var stepTwo = '';
+            var stepThree = '';
+            var step = this.props.step;
+            switch (step) {
+                case 2:
+                    stepOne = 'completed';
+                    stepThree = 'disabled';
+                    break;
+                case 3:
+                    stepOne = 'completed';
+                    stepTwo = 'completed';
+                    break;
+                default:
+                    stepTwo = 'disabled';
+                    stepThree = 'disabled';
+            }
             return _react2.default.createElement(
-                "div",
-                { className: "ui text container" },
-                _react2.default.createElement("br", null),
+                'div',
+                { className: 'ui text container' },
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
-                    "h2",
-                    { className: "ui header" },
-                    _react2.default.createElement("i", { className: "settings icon" }),
+                    'h2',
+                    { className: 'ui header' },
+                    _react2.default.createElement('i', { className: 'settings icon' }),
                     _react2.default.createElement(
-                        "div",
-                        { className: "content" },
-                        "Setting Your Hexo "
+                        'div',
+                        { className: 'content' },
+                        'Setting Your Hexo '
                     )
                 ),
                 _react2.default.createElement(
-                    "div",
-                    { className: "ui steps" },
+                    'div',
+                    { className: 'ui steps' },
                     _react2.default.createElement(
-                        "div",
-                        { className: " step" },
-                        _react2.default.createElement("i", { className: "info icon" }),
+                        'div',
+                        { className: stepOne + " step" },
+                        _react2.default.createElement('i', { className: 'info icon' }),
                         _react2.default.createElement(
-                            "div",
-                            { className: "content" },
+                            'div',
+                            { className: 'content' },
                             _react2.default.createElement(
-                                "div",
-                                { className: "title" },
-                                "Step 1: System Env"
+                                'div',
+                                { className: 'title' },
+                                'Step 1: System Env'
                             ),
                             _react2.default.createElement(
-                                "div",
-                                { className: "description" },
-                                "You may need git & hexo"
+                                'div',
+                                { className: 'description' },
+                                'You may need git & hexo'
                             )
                         )
                     ),
                     _react2.default.createElement(
-                        "div",
-                        { className: "completed step" },
-                        _react2.default.createElement("i", { className: "info icon" }),
+                        'div',
+                        { className: stepTwo + " step" },
+                        _react2.default.createElement('i', { className: 'info icon' }),
                         _react2.default.createElement(
-                            "div",
-                            { className: "content" },
+                            'div',
+                            { className: 'content' },
                             _react2.default.createElement(
-                                "div",
-                                { className: "title" },
-                                "Step 2: Hexo Setup"
+                                'div',
+                                { className: 'title' },
+                                'Step 2: Hexo Setup'
                             ),
                             _react2.default.createElement(
-                                "div",
-                                { className: "description" },
-                                "Set up your git and hexo "
+                                'div',
+                                { className: 'description' },
+                                'Set up your git and hexo '
                             )
                         )
                     ),
                     _react2.default.createElement(
-                        "div",
-                        { className: "disabled step" },
-                        _react2.default.createElement("i", { className: "info icon" }),
+                        'div',
+                        { className: stepThree + " step" },
+                        _react2.default.createElement('i', { className: 'info icon' }),
                         _react2.default.createElement(
-                            "div",
-                            { className: "content" },
+                            'div',
+                            { className: 'content' },
                             _react2.default.createElement(
-                                "div",
-                                { className: "title" },
-                                "Step 3: Complete"
+                                'div',
+                                { className: 'title' },
+                                'Step 3: Complete'
                             ),
                             _react2.default.createElement(
-                                "div",
-                                { className: "description" },
-                                "Enjoy writing your blog"
+                                'div',
+                                { className: 'description' },
+                                'Enjoy writing your blog'
                             )
                         )
                     )
                 ),
                 _react2.default.createElement(
-                    "div",
-                    { className: "ui attached segment" },
+                    'div',
+                    { className: 'ui attached segment' },
                     this.props.children
                 )
             );
         }
+    }], [{
+        key: 'getStores',
+        value: function getStores() {
+            return [_GuideStore2.default];
+        }
+    }, {
+        key: 'getPropsFromStores',
+        value: function getPropsFromStores() {
+            console.log('Global Guide State:', _GuideStore2.default.getState());
+            return _GuideStore2.default.getState();
+        }
     }]);
 
-    return Guide;
+    return PureGuide;
 }(_react.Component);
+
+var Guide = (0, _connectToStores2.default)(PureGuide);
 
 exports.default = Guide;
 
-},{"react":"react"}],7:[function(require,module,exports){
+},{"../../action/GuideAction":4,"../../store/GuideStore":16,"alt-utils/lib/connectToStores":1,"react":"react"}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -439,7 +538,7 @@ var StepOne = function (_Component) {
 
 exports.default = StepOne;
 
-},{"react":"react"}],8:[function(require,module,exports){
+},{"react":"react"}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -452,7 +551,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _connectToStores = require('../../../../node_modules/alt-utils/lib/connectToStores');
+var _connectToStores = require('alt-utils/lib/connectToStores');
 
 var _connectToStores2 = _interopRequireDefault(_connectToStores);
 
@@ -538,7 +637,7 @@ var Content = function (_Component) {
 
 exports.default = (0, _connectToStores2.default)(Content);
 
-},{"../../../../node_modules/alt-utils/lib/connectToStores":1,"../../action/ContentAction":3,"../../store/ContentStore":13,"react":"react"}],9:[function(require,module,exports){
+},{"../../action/ContentAction":3,"../../store/ContentStore":15,"alt-utils/lib/connectToStores":1,"react":"react"}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -579,7 +678,7 @@ var Home = function (_Component) {
                 'Hello Home! ... ',
                 _react2.default.createElement(
                     _reactRouter.Link,
-                    { to: './content' },
+                    { to: '/manager/content' },
                     'content'
                 )
             );
@@ -591,7 +690,7 @@ var Home = function (_Component) {
 
 exports.default = Home;
 
-},{"react":"react","react-router":"react-router"}],10:[function(require,module,exports){
+},{"react":"react","react-router":"react-router"}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -692,7 +791,7 @@ var Manager = function (_Component) {
 
 exports.default = Manager;
 
-},{"react":"react","react-router":"react-router"}],11:[function(require,module,exports){
+},{"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -717,7 +816,7 @@ _reactDom2.default.render(_react2.default.createElement(
     _route2.default
 ), document.getElementById('app'));
 
-},{"./route":12,"react":"react","react-dom":"react-dom","react-router":"react-router"}],12:[function(require,module,exports){
+},{"./route":14,"react":"react","react-dom":"react-dom","react-router":"react-router"}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -779,7 +878,7 @@ exports.default = _react2.default.createElement(
     )
 );
 
-},{"./component/App":5,"./component/guide/Guide":6,"./component/guide/StepOne":7,"./component/manager/Content":8,"./component/manager/Home":9,"./component/manager/Manager":10,"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
+},{"./component/App":6,"./component/guide/Guide":8,"./component/guide/StepOne":9,"./component/manager/Content":10,"./component/manager/Home":11,"./component/manager/Manager":12,"react":"react","react-router":"react-router"}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -804,6 +903,7 @@ var ContentStore = function ContentStore() {
     _classCallCheck(this, ContentStore);
 
     this.handleClick = function (type) {
+        console.log('my type:', type);
         var count = _this.state.count;
         switch (type) {
             case 0:
@@ -827,4 +927,51 @@ var ContentStore = function ContentStore() {
 
 exports.default = _alt2.default.createStore(ContentStore, 'ContentStore');
 
-},{"../action/ContentAction":3,"../alt":4}]},{},[11]);
+},{"../action/ContentAction":3,"../alt":5}],16:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _alt = require('../alt');
+
+var _alt2 = _interopRequireDefault(_alt);
+
+var _GuideAction = require('../action/GuideAction');
+
+var _GuideAction2 = _interopRequireDefault(_GuideAction);
+
+var _Functions = require('../component/common/Functions');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var GuideStore = function GuideStore() {
+    var _this = this;
+
+    _classCallCheck(this, GuideStore);
+
+    this.handleInit = function () {
+        $.get('/guide/check', function (data) {
+            console.log('data:', data);
+            if (data) {
+                console.log('step:', data.step);
+                _this.setState({ step: data.step });
+            }
+        });
+    };
+
+    this.bindListeners({
+        handleInit: _GuideAction2.default.handleInit
+    });
+
+    this.state = {
+        step: -1
+    };
+};
+
+exports.default = _alt2.default.createStore(GuideStore, 'GuideStore');
+
+},{"../action/GuideAction":4,"../alt":5,"../component/common/Functions":7}]},{},[13]);
