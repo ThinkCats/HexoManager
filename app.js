@@ -1,8 +1,9 @@
 // Babel 6 Compile
 require('babel-core/register')({
    presets: ['es2015','stage-1', 'react'],
-   plugins: ["transform-class-properties"]
+   plugins: ["transform-class-properties","transform-runtime"]
 });
+
 
 import express from 'express';
 import React from 'react';

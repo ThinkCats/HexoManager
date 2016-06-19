@@ -17,6 +17,7 @@
     "babel-cli": "^6.9.0",
     "babel-core": "^6.9.1",
     "babel-plugin-transform-class-properties": "^6.9.1",
+    "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
@@ -43,8 +44,8 @@
     "dev": "gulp & nodemon app.js --exec babel-node --presets es2015",
     "start": "node dist/app.js",
     "build": "rm -rf dist && gulp build && npm run build-js && npm run build-main && npm run copy-res",
-    "copy-res": "cp -rf public dist ",
-    "build-js": "babel src --out-dir dist/src && cp package.json dist && cd dist && npm install",
+    "copy-res": "cp -rf public dist && cp -rf node_modules dist",
+    "build-js": "babel src --out-dir dist/src",
     "build-main": "babel app.js -o dist/app.js"
   }
 }
