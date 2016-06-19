@@ -3,29 +3,29 @@ import connectToStore from 'alt-utils/lib/connectToStores';
 import GuideAction from '../../action/GuideAction';
 import GuideStore from '../../store/GuideStore';
 
-class PureGuide extends Component{
+class PureGuide extends Component {
 
     static getStores() {
         return [GuideStore];
     }
 
     static getPropsFromStores() {
-        console.log('Global Guide State:',GuideStore.getState());
+        console.log('Global Guide State:', GuideStore.getState());
         return GuideStore.getState();
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
         console.log('guide init');
         GuideAction.handleInit()
     }
-    
-    render(){
+
+    render() {
         let stepOne = '';
         let stepTwo = '';
         let stepThree = '';
         let step = this.props.step;
-        switch (step){
+        switch (step) {
             case 2:
                 stepOne = 'completed';
                 stepThree = 'disabled';
@@ -33,6 +33,7 @@ class PureGuide extends Component{
             case 3:
                 stepOne = 'completed';
                 stepTwo = 'completed';
+                stepThree = 'completed';
                 break;
             default:
                 stepTwo = 'disabled';
@@ -43,7 +44,7 @@ class PureGuide extends Component{
                 <br/>
                 <h2 className="ui header">
                     <i className="settings icon"></i>
-                    <div className="content">Setting Your Hexo </div>
+                    <div className="content">Setting Your Hexo</div>
                 </h2>
                 <div className="ui steps">
                     <div className={stepOne + " step"}>
@@ -57,7 +58,7 @@ class PureGuide extends Component{
                         <i className="info icon"></i>
                         <div className="content">
                             <div className="title">Step 2: Hexo Setup</div>
-                            <div className="description">Set up your git and hexo </div>
+                            <div className="description">Set up your git and hexo</div>
                         </div>
                     </div>
                     <div className={stepThree + " step"}>

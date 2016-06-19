@@ -221,6 +221,11 @@ var GuideAction = function () {
         value: function handleInit() {
             return null;
         }
+    }, {
+        key: 'handleCheckEnv',
+        value: function handleCheckEnv() {
+            return null;
+        }
     }]);
 
     return GuideAction;
@@ -369,6 +374,7 @@ var PureGuide = function (_Component) {
                 case 3:
                     stepOne = 'completed';
                     stepTwo = 'completed';
+                    stepThree = 'completed';
                     break;
                 default:
                     stepTwo = 'disabled';
@@ -385,7 +391,7 @@ var PureGuide = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'content' },
-                        'Setting Your Hexo '
+                        'Setting Your Hexo'
                     )
                 ),
                 _react2.default.createElement(
@@ -425,7 +431,7 @@ var PureGuide = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'description' },
-                                'Set up your git and hexo '
+                                'Set up your git and hexo'
                             )
                         )
                     ),
@@ -477,7 +483,7 @@ var Guide = (0, _connectToStores2.default)(PureGuide);
 exports.default = Guide;
 
 },{"../../action/GuideAction":4,"../../store/GuideStore":16,"alt-utils/lib/connectToStores":1,"react":"react"}],9:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -485,9 +491,21 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _GuideAction = require('../../action/GuideAction');
+
+var _GuideAction2 = _interopRequireDefault(_GuideAction);
+
+var _GuideStore = require('../../store/GuideStore');
+
+var _GuideStore2 = _interopRequireDefault(_GuideStore);
+
+var _connectToStores = require('alt-utils/lib/connectToStores');
+
+var _connectToStores2 = _interopRequireDefault(_connectToStores);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -507,38 +525,134 @@ var StepOne = function (_Component) {
     }
 
     _createClass(StepOne, [{
-        key: "render",
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            _GuideAction2.default.handleCheckEnv();
+        }
+    }, {
+        key: 'render',
         value: function render() {
-            return _react2.default.createElement(
-                "div",
-                { className: "ui segment" },
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("br", null),
-                _react2.default.createElement("br", null),
+            var loading = _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
-                    "div",
-                    { className: "ui active inverted dimmer" },
+                    'div',
+                    { className: 'ui active inverted dimmer' },
                     _react2.default.createElement(
-                        "div",
-                        { className: "ui medium text loader" },
-                        "Checking System ...."
+                        'div',
+                        { className: 'ui medium text loader' },
+                        'Checking System ....'
                     )
                 )
             );
+
+            var envResult = this.props.envResult.message;
+            var git = envResult ? envResult.git : '';
+            var hexo = envResult ? envResult.hexo : '';
+
+            var result = _react2.default.createElement(Content, { git: git, hexo: hexo });
+
+            var view = null;
+            if (this.props.loadingHidden) {
+                view = result;
+            } else {
+                view = loading;
+            }
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'ui text container' },
+                view
+            );
+        }
+    }], [{
+        key: 'getStores',
+        value: function getStores() {
+            return [_GuideStore2.default];
+        }
+    }, {
+        key: 'getPropsFromStores',
+        value: function getPropsFromStores() {
+            console.log('Global Guide State:', _GuideStore2.default.getState());
+            return _GuideStore2.default.getState();
         }
     }]);
 
     return StepOne;
 }(_react.Component);
 
-exports.default = StepOne;
+var Content = function (_Component2) {
+    _inherits(Content, _Component2);
 
-},{"react":"react"}],10:[function(require,module,exports){
+    function Content() {
+        _classCallCheck(this, Content);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(Content).apply(this, arguments));
+    }
+
+    _createClass(Content, [{
+        key: 'render',
+        value: function render() {
+            var git = this.props.git;
+            var hexo = this.props.hexo;
+            var gitStatus = git.success ? _react2.default.createElement('i', { className: 'checkmark icon' }) : '';
+            var hexoStatus = hexo.success ? _react2.default.createElement('i', { className: 'checkmark icon' }) : '';
+            var hexoList = hexo.message.split('\n').map(function (data, i) {
+                return _react2.default.createElement(
+                    'p',
+                    { key: i },
+                    data
+                );
+            });
+            return _react2.default.createElement(
+                'div',
+                { className: 'ui text container' },
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Git ',
+                    gitStatus
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    git.message
+                ),
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Hexo',
+                    hexoStatus
+                ),
+                hexoList,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'custom-guide-next-button' },
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'mini ui teal  right labeled icon button ' },
+                        _react2.default.createElement('i', { className: 'right arrow icon' }),
+                        ' Next '
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Content;
+}(_react.Component);
+
+exports.default = (0, _connectToStores2.default)(StepOne);
+
+},{"../../action/GuideAction":4,"../../store/GuideStore":16,"alt-utils/lib/connectToStores":1,"react":"react"}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -954,7 +1068,7 @@ var GuideStore = function GuideStore() {
     _classCallCheck(this, GuideStore);
 
     this.handleInit = function () {
-        $.get('/guide/check', function (data) {
+        (0, _Functions.json)('/guide/step').then(function (data) {
             console.log('data:', data);
             if (data) {
                 console.log('step:', data.step);
@@ -963,12 +1077,21 @@ var GuideStore = function GuideStore() {
         });
     };
 
+    this.handleGuide = function () {
+        (0, _Functions.json)('/guide/check').then(function (data) {
+            _this.setState({ envResult: data, loadingHidden: true });
+        });
+    };
+
     this.bindListeners({
-        handleInit: _GuideAction2.default.handleInit
+        handleInit: _GuideAction2.default.handleInit,
+        handleGuide: _GuideAction2.default.handleCheckEnv
     });
 
     this.state = {
-        step: -1
+        step: -1,
+        loadingHidden: false,
+        envResult: {}
     };
 };
 
