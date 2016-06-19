@@ -41,10 +41,10 @@
   },
   "scripts": {
     "dev": "gulp & nodemon app.js --exec babel-node --presets es2015",
-    "start": "cd dist && npm install && node app.js",
+    "start": "node dist/app.js",
     "build": "rm -rf dist && gulp build && npm run build-js && npm run build-main && npm run copy-res",
-    "copy-res": "cp -rf public dist && cp package.json dist",
-    "build-js": "babel src --out-dir dist/src",
+    "copy-res": "cp -rf public dist && cp package.json dist  && cp -rf node_modules  dist",
+    "build-js": "babel src --out-dir dist/src && npm install",
     "build-main": "babel app.js -o dist/app.js"
   }
 }
