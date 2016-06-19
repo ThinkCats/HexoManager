@@ -7,7 +7,7 @@
     "alt-utils": "^1.0.0",
     "co": "^4.6.0",
     "express": "^4.13.4",
-    "mysql": "^2.11.1",
+    "mongoose": "^4.5.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-router": "^2.4.1",
@@ -41,9 +41,9 @@
   },
   "scripts": {
     "dev": "gulp & nodemon app.js --exec babel-node --presets es2015",
-    "start": "node dist/app.js",
+    "start": "cd dist && npm install && node app.js",
     "build": "rm -rf dist && gulp build && npm run build-js && npm run build-main && npm run copy-res",
-    "copy-res": "cp -rf public dist",
+    "copy-res": "cp -rf public dist && cp package.json dist",
     "build-js": "babel src --out-dir dist/src",
     "build-main": "babel app.js -o dist/app.js"
   }

@@ -9,11 +9,17 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import {match ,RouterContext} from 'react-router';
 import swig from 'swig';
+import mongoose from 'mongoose';
 var route = require('./src/view/route'); //注意这一段怪怪的引用
+import config from './src/control/config';
+import guide from './src/control/router/guide';
 
 const app = express();
 
 app.use(express.static( 'public/resources'));
+mongoose.connect(config.database);
+
+app.use('/guide',guide);
 
 //服务端渲染
 app.use((req,res) => {
