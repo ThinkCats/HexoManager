@@ -33,7 +33,7 @@ gulp.task('vendor', function() {
         'bower_components/jquery/dist/jquery.min.js',
         'bower_components/Semantic-UI/dist/semantic.min.js'
     ]).pipe(concat('vendor.js'))
-        .pipe(gulpif(production, uglify({ mangle: false })))
+        .pipe(gulpif(production, uglify({ mangle: true })))
         .pipe(gulp.dest('public/resources/js'));
 });
 
@@ -48,7 +48,7 @@ gulp.task('browserify-vendor', function() {
         .require(dependencies)
         .bundle()
         .pipe(source('vendor.bundle.js'))
-        .pipe(gulpif(production, streamify(uglify({ mangle: false }))))
+        .pipe(gulpif(production, streamify(uglify({ mangle: true }))))
         .pipe(gulp.dest('public/resources/js'));
 });
 
@@ -63,7 +63,7 @@ gulp.task('browserify', ['browserify-vendor'], function() {
         .transform(babelify, { presets: ['es2015', 'react','stage-1'] })
         .bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulpif(production, streamify(uglify({ mangle: false }))))
+        .pipe(gulpif(production, streamify(uglify({ mangle: true }))))
         .pipe(gulp.dest('public/resources/js'));
 });
 

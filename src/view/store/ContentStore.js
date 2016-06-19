@@ -13,6 +13,7 @@ class ContentStore {
     }
 
     handleClick = (type)=>{
+        console.log('my type:',type);
         let count = this.state.count;
         switch (type){
             case 0:
