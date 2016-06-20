@@ -4,6 +4,7 @@
   ],
   "plugins": [
     "transform-class-properties",
-    "transform-runtime"
+    "transform-runtime",
+    "transform-regenerator"
   ]
 }

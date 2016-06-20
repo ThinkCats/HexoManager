@@ -1,7 +1,7 @@
 // Babel 6 Compile
 require('babel-core/register')({
    presets: ['es2015','stage-1', 'react'],
-   plugins: ["transform-class-properties","transform-runtime"]
+   plugins: ["transform-class-properties","transform-runtime","transform-regenerator"]
 });
 
 
