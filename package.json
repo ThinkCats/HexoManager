@@ -44,7 +44,7 @@
     "dev": "gulp & nodemon app.js --exec babel-node --presets es2015",
     "start": "node dist/app.js",
     "build": "rm -rf dist && gulp build && npm run build-js && npm run build-main && npm run copy-res",
-    "copy-res": "cp -rf public dist && cp -rf node_modules dist",
+    "copy-res": "cp -rf public dist && cp -rf node_modules dist && cp package.json dist",
     "build-js": "babel src --out-dir dist/src",
     "build-main": "babel app.js -o dist/app.js"
   }
