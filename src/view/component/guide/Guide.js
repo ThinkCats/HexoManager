@@ -69,7 +69,7 @@ class PureGuide extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="ui attached segment">
+                <div className="ui attached segment container">
                     {this.props.children}
                 </div>
 

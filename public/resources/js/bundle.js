@@ -1668,7 +1668,7 @@ var PureGuide = function (_Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'ui attached segment' },
+                    { className: 'ui attached segment container' },
                     this.props.children
                 )
             );
@@ -1778,8 +1778,9 @@ var StepOne = function (_Component) {
             var envResult = this.props.envResult.message;
             var git = envResult ? envResult.git : '';
             var hexo = envResult ? envResult.hexo : '';
+            var mongo = envResult ? envResult.mongo : '';
 
-            var result = _react2.default.createElement(Content, { git: git, hexo: hexo });
+            var result = _react2.default.createElement(Content, { git: git, hexo: hexo, mongo: mongo });
 
             var view = null;
             if (this.props.loadingHidden) {
@@ -1790,7 +1791,7 @@ var StepOne = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'ui text container' },
+                { className: 'ui text ' },
                 view
             );
         }
@@ -1822,18 +1823,59 @@ var Content = function (_Component2) {
         value: function render() {
             var git = this.props.git;
             var hexo = this.props.hexo;
+            var mongo = this.props.mongo;
             var gitStatus = git.success ? _react2.default.createElement('i', { className: 'checkmark icon' }) : '';
             var hexoStatus = hexo.success ? _react2.default.createElement('i', { className: 'checkmark icon' }) : '';
-            var hexoList = hexo.message.split('\n').map(function (data, i) {
+            var mongoStatus = mongo.success ? _react2.default.createElement('i', { className: 'checkmark icon' }) : '';
+            var hexoMsg = hexo.success ? hexo.message.split('\n').map(function (data, i) {
                 return _react2.default.createElement(
                     'p',
                     { key: i },
                     data
                 );
-            });
+            }) : _react2.default.createElement(
+                'div',
+                { className: 'ui red message' },
+                'Hexo Not Ready'
+            );
+            var gitMsg = git.success ? git.message : _react2.default.createElement(
+                'div',
+                { className: 'ui red message' },
+                'Git Not Ready'
+            );
+            var mongoMsg = mongo.success ? mongo.message : _react2.default.createElement(
+                'div',
+                { className: 'ui red message' },
+                'Mongo Not Ready'
+            );
+
+            var nextButton = null;
+            if (mongo.success && git.success && hexo.success) {
+                nextButton = _react2.default.createElement(
+                    'div',
+                    { className: 'custom-guide-next-button' },
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'mini ui teal  right labeled icon button ' },
+                        _react2.default.createElement('i', { className: 'right arrow icon' }),
+                        'Next'
+                    )
+                );
+            }
             return _react2.default.createElement(
                 'div',
-                { className: 'ui text container' },
+                { className: 'ui text' },
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Mongo ',
+                    mongoStatus
+                ),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    mongoMsg
+                ),
                 _react2.default.createElement(
                     'h1',
                     null,
@@ -1843,7 +1885,7 @@ var Content = function (_Component2) {
                 _react2.default.createElement(
                     'p',
                     null,
-                    git.message
+                    gitMsg
                 ),
                 _react2.default.createElement(
                     'h1',
@@ -1851,17 +1893,8 @@ var Content = function (_Component2) {
                     'Hexo',
                     hexoStatus
                 ),
-                hexoList,
-                _react2.default.createElement(
-                    'div',
-                    { className: 'custom-guide-next-button' },
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'mini ui teal  right labeled icon button ' },
-                        _react2.default.createElement('i', { className: 'right arrow icon' }),
-                        ' Next '
-                    )
-                )
+                hexoMsg,
+                nextButton
             );
         }
     }]);

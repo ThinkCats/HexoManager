@@ -38,6 +38,7 @@ router.post('/step/:step', (req, res)=> {
 //check env
 router.get('/check', (req, res)=> {
     co(check()).then((result)=>{
+        console.log('check result:',result);
         res.json({success: true, message: result});
     });
 });
@@ -48,6 +49,8 @@ function* check() {
     result.git = gitInfo;
     let hexoInfo = yield checkCmd('hexo version');
     result.hexo = hexoInfo;
+    let mongoInfo = yield checkCmd('mongo --version');
+    result.mongo = mongoInfo;
     return yield new Promise((resolve)=>{
        resolve(result);
     });
